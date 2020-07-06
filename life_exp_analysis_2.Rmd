@@ -1,0 +1,38 @@
+---
+title: "life_exp_analysis_2"
+author: "Yichuan (James) Li"
+date: "2020/7/6"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+```{r}
+data("gapminder_unfiltered")
+gapminder_unfiltered %>% 
+  group_by(year) %>% 
+  filter(lifeExp == max(lifeExp)) %>% 
+  ungroup() %>% 
+  select(year, country, lifeExp) %>% 
+  arrange(year)->
+  sumdat
+```
+
+```{r}
+sumdat %>% 
+  ggplot(aes(x=year, y=lifeExp)) +
+  geom_point(aes(color = country)) +
+  geom_point (pch =1) + 
+  theme_bw()+
+  geom_smooth(method = "lm", se = FALSE) +
+  xlab("Year") +
+  ylab("Maximum Life Expectancy") +
+  scale_color_discrete((name = "Country"))
+```
