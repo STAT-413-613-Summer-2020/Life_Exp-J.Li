@@ -36,3 +36,16 @@ sumdat %>%
   ylab("Maximum Life Expectancy") +
   scale_color_discrete((name = "Country"))
 ```
+
+```{r}
+sumdat %>% 
+  ggplot(aes(x=year, y=lifeExp)) +
+  geom_point(aes(color = country)) +
+  geom_point (pch =3) + 
+  theme_bw()+
+  geom_smooth(method = "lm", se = TRUE) +
+  xlab("Year") +
+  ylab("Maximum Life Expectancy") +
+  scale_color_discrete((name = "Country"))
+```
+
