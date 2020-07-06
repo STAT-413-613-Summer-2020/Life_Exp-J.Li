@@ -14,5 +14,14 @@ library(tidyverse)
 library(gapminder)
 ```
 
-# Analysis
-
+# Life Expectency Analysis
+```{r}
+data("gapminder_unfiltered")
+gapminder_unfiltered %>% 
+  group_by(year) %>% 
+  filter(lifeExp == max(lifeExp)) %>% 
+  ungroup() %>% 
+  select(year, country, lifeExp) %>% 
+  arrange(year)->
+  sumdat
+```
